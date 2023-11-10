@@ -11,12 +11,9 @@
     "src",
     "lib",
     "android",
-    "ios",
     "cpp",
-    "rn-pda-scan.podspec",
     "!lib/typescript/example",
     "!android/build",
-    "!ios/build",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
@@ -32,14 +29,17 @@
   },
   "keywords": [
     "react-native",
-    "ios",
+    "phonemax",
+    "scanner",
+    "barcode",
+    "pda",
     "android"
   ],
-  "repository": "https://github.com/dyusef/rn-pda-scan",
-  "author": "dyusef97 <d.yusefns@gmail.com> (https://github.com/dyusef)",
+  "repository": "https://github.com/dyusef97/rn-pda-scan",
+  "author": "dyusef97 <d.yusefns@gmail.com> (https://github.com/dyusef97)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dyusef/rn-pda-scan/issues"
+    "url": "https://github.com/dyusef97/rn-pda-scan/issues"
   },
   "homepage": "https://github.com/dyusef/rn-pda-scan#readme",
   "publishConfig": {
@@ -118,7 +118,8 @@
           "singleQuote": true,
           "tabWidth": 2,
           "trailingComma": "es5",
-          "useTabs": false
+          "useTabs": false,
+          "printWidth": 150
         }
       ]
     }
@@ -132,7 +133,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
-    "useTabs": false
+    "useTabs": false,
+    "printWidth": 150
   },
   "react-native-builder-bob": {
     "source": "src",

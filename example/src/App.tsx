@@ -1,14 +1,19 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'rn-pda-scan';
+import { RnPdaScan } from 'rn-pda-scan';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+    RnPdaScan.on('onEvent', (event: any) => {
+      console.log('Received data', event);
+      setResult(event.code);
+    });
+
+    return RnPdaScan.off('onEvent');
+  }, [RnPdaScan]);
 
   return (
     <View style={styles.container}>
