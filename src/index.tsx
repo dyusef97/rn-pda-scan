@@ -23,14 +23,14 @@ export const RnPdaScan = NativeModules.RnPdaScan
  * @param  {Function} handler Event handler
  */
 const allowedEvents = ['onEvent', 'onError'];
+let eventEmitterGlobal = new NativeEventEmitter(RnPdaScan);
 
 RnPdaScan.on = (eventName: string, handler: any) => {
   if (!allowedEvents.includes(eventName)) {
     throw new Error(`Event name ${eventName} is not a supported event.`);
   }
 
-  let eventEmitter = new NativeEventEmitter(RnPdaScan);
-  eventEmitter.addListener(eventName, handler);
+  eventEmitterGlobal.addListener(eventName, handler);
 };
 
 /**
@@ -38,13 +38,12 @@ RnPdaScan.on = (eventName: string, handler: any) => {
  * @param  {String} eventName Name of event one of onEvent, onError
  * @param  {Function} handler Event handler
  */
-RnPdaScan.off = (eventName: string, handler: any) => {
+RnPdaScan.off = (eventName: string) => {
   if (!allowedEvents.includes(eventName)) {
     throw new Error(`Event name ${eventName} is not a supported event.`);
   }
 
-  let eventEmitter = new NativeEventEmitter(RnPdaScan);
-  eventEmitter.removeListener(eventName, handler);
+  eventEmitterGlobal.removeAllListeners(eventName);
 };
 
 let triggerEnum: { always: any; change: any };
