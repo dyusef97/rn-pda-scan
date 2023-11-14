@@ -1,19 +1,27 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { RnPdaScan } from 'rn-pda-scan';
+import useRnPdaScan from 'rn-pda-scan';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
-  React.useEffect(() => {
-    RnPdaScan.on('onEvent', (event: any) => {
-      console.log('Received data', event);
-      setResult(event.code);
-    });
+  useRnPdaScan({
+    onError: (e: any) => console.log('error', e),
+    onEvent: (v: React.SetStateAction<number | undefined>) => {
+      // console.log('%cApp.tsx line:10 v', 'color: #007acc;', v);
+      setResult(v);
+    },
+  });
 
-    return RnPdaScan.off('onEvent');
-  }, [RnPdaScan]);
+  // React.useEffect(() => {
+  //   RnPdaScan.on('onEvent', (event: any) => {
+  //     console.log('Received data', event);
+  //     setResult(event.code);
+  //   });
+
+  //   return RnPdaScan.off('onEvent');
+  // }, [RnPdaScan]);
 
   return (
     <View style={styles.container}>
